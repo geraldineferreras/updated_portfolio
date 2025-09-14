@@ -92,6 +92,7 @@ const Home = () => {
   const [charIndex, setCharIndex] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
+  const [lottieError, setLottieError] = useState(false)
 
   // Optimize AOS initialization
   useEffect(() => {
@@ -110,8 +111,20 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoaded(true);
-    return () => setIsLoaded(false);
-  }, []);
+    
+    // Set a timeout to show fallback if Lottie doesn't load within 5 seconds
+    const fallbackTimeout = setTimeout(() => {
+      if (!lottieError) {
+        console.log('Lottie animation timeout, showing fallback');
+        setLottieError(true);
+      }
+    }, 5000);
+    
+    return () => {
+      setIsLoaded(false);
+      clearTimeout(fallbackTimeout);
+    };
+  }, [lottieError]);
 
   // Optimize typing effect
   const handleTyping = useCallback(() => {
@@ -155,7 +168,11 @@ const Home = () => {
       isHovering 
         ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%] rotate-2" 
         : "scale-[175%] sm:scale-[155%] md:scale-[145%] lg:scale-[140%]"
-    }`
+    }`,
+    onLoadError: () => {
+      console.log('Lottie animation failed to load, using fallback');
+      setLottieError(true);
+    }
   };
 
   return (
@@ -223,7 +240,16 @@ const Home = () => {
                 <div className={`relative lg:left-12 z-10 w-full opacity-90 transform transition-transform duration-500 ${
                   isHovering ? "scale-105" : "scale-100"
                 }`}>
-                  <DotLottieReact {...lottieOptions} />
+                  {!lottieError ? (
+                    <DotLottieReact {...lottieOptions} />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="text-center text-dark-300">
+                        <div className="text-6xl mb-4">💻</div>
+                        <p className="text-sm">Animation loading...</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className={`absolute inset-0 pointer-events-none transition-all duration-700 ${

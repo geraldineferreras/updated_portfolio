@@ -21,7 +21,7 @@ const StatusBadge = memo(() => (
 
 const MainTitle = memo(() => (
   <div className="space-y-2" data-aos="fade-up" data-aos-delay="600">
-    <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight font-display">
+    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl font-bold tracking-tight font-display">
       <span className="relative inline-block">
         <span className="absolute -inset-2 bg-gradient-to-r from-primary-500 to-accent-500 blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-white via-primary-100 to-accent-200 bg-clip-text text-transparent">
@@ -159,7 +159,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] content-layer" id="Home">
+    <div className="min-h-screen overflow-hidden px-4 sm:px-6 lg:px-8 xl:px-12 content-layer" id="Home">
       <div className={`relative z-10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
         <div className="container mx-auto  min-h-screen ">
           <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">

@@ -130,8 +130,8 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
         >
           <BackgroundEffect />
           
-          <div className="relative min-h-screen flex items-center justify-center px-4 py-8">
-            <div className="w-full max-w-6xl mx-auto">
+          <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
+            <div className="w-full max-w-7xl mx-auto">
               
               {/* Floating Icons */}
               <motion.div 
@@ -149,7 +149,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                 variants={childVariants}
               >
                 <motion.h1 
-                  className="text-4xl sm:text-5xl md:text-7xl font-bold font-display mb-4"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
@@ -163,7 +163,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                 </motion.h1>
                 
                 <motion.p 
-                  className="text-lg sm:text-xl text-dark-300 max-w-2xl mx-auto mb-6"
+                  className="text-base sm:text-lg md:text-xl text-dark-300 max-w-2xl mx-auto mb-6"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
@@ -174,7 +174,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
 
               {/* Feature Cards */}
               <motion.div 
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12"
                 variants={childVariants}
               >
                 <FeatureCard 

@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useMemo } from "react"
+import React, { useEffect, memo, useMemo, useState, useCallback } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles, UserCheck } from "lucide-react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -113,8 +113,15 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
 ));
 
 const AboutPage = () => {
-  // Memoized calculations
-  const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
+  // State for statistics
+  const [stats, setStats] = useState({
+    totalProjects: 0,
+    totalCertificates: 0,
+    YearExperience: 3
+  });
+
+  // Function to calculate statistics
+  const calculateStats = useCallback(() => {
     const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
     const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
     
@@ -129,6 +136,32 @@ const AboutPage = () => {
       YearExperience: experience
     };
   }, []);
+
+  // Update statistics on mount and when localStorage changes
+  useEffect(() => {
+    // Initial calculation
+    setStats(calculateStats());
+
+    // Listen for localStorage changes
+    const handleStorageChange = () => {
+      setStats(calculateStats());
+    };
+
+    // Listen for storage events (when localStorage changes in other tabs)
+    window.addEventListener('storage', handleStorageChange);
+
+    // Also check for changes periodically (in case localStorage changes in the same tab)
+    const interval = setInterval(() => {
+      setStats(calculateStats());
+    }, 1000);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, [calculateStats]);
+
+  const { totalProjects, totalCertificates, YearExperience } = stats;
 
   // Optimized AOS initialization
   useEffect(() => {

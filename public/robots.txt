@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ferreras.my.id/sitemap.xml

@@ -1,0 +1,300 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Inter", system-ui, sans-serif;
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(20, 184, 166, 0.3) rgba(15, 23, 42, 0.356);
+}
+
+html,
+body {
+	overflow-x: hidden;
+	background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+	scroll-behavior: smooth !important;
+	min-height: 100vh;
+}
+
+/* Tech Circuit Pattern Background */
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: 
+		/* Grid lines */
+		linear-gradient(to right, rgba(20, 184, 166, 0.2) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(14, 165, 233, 0.2) 1px, transparent 1px),
+		/* Circuit nodes */
+		radial-gradient(circle at 25% 25%, rgba(20, 184, 166, 0.3) 6px, transparent 6px),
+		radial-gradient(circle at 75% 75%, rgba(14, 165, 233, 0.3) 6px, transparent 6px),
+		radial-gradient(circle at 50% 10%, rgba(234, 179, 8, 0.25) 4px, transparent 4px),
+		radial-gradient(circle at 10% 90%, rgba(20, 184, 166, 0.25) 4px, transparent 4px),
+		radial-gradient(circle at 90% 50%, rgba(14, 165, 233, 0.25) 4px, transparent 4px),
+		radial-gradient(circle at 30% 60%, rgba(20, 184, 166, 0.2) 3px, transparent 3px),
+		radial-gradient(circle at 70% 40%, rgba(14, 165, 233, 0.2) 3px, transparent 3px);
+	background-size: 
+		80px 80px, /* Grid size */
+		80px 80px, /* Grid size */
+		500px 500px, /* Large nodes */
+		400px 400px, /* Medium nodes */
+		350px 350px, /* Medium nodes */
+		300px 300px, /* Small nodes */
+		250px 250px, /* Small nodes */
+		200px 200px, /* Tiny nodes */
+		180px 180px; /* Tiny nodes */
+	background-position: 
+		0 0,
+		0 0,
+		0 0,
+		0 0,
+		0 0,
+		0 0,
+		0 0,
+		0 0,
+		0 0;
+	opacity: 0.8;
+	z-index: 1;
+	animation: circuitFlow 40s linear infinite;
+	pointer-events: none;
+}
+
+/* Additional tech glow effect */
+body::after {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(ellipse at center, rgba(20, 184, 166, 0.05) 0%, transparent 50%);
+	z-index: 0;
+	animation: techGlow 8s ease-in-out infinite alternate;
+	pointer-events: none;
+}
+
+@keyframes techGlow {
+	0% {
+		opacity: 0.3;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0.6;
+		transform: scale(1.1);
+	}
+}
+
+@keyframes circuitFlow {
+	0% {
+		background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+	}
+	100% {
+		background-position: 80px 80px, 80px 80px, 500px 500px, 400px 400px, 350px 350px, 300px 300px, 250px 250px, 200px 200px, 180px 180px;
+	}
+}
+
+@keyframes blob {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
+}
+
+.animate-blob {
+	animation: blob 8s infinite;
+}
+
+.animation-delay-2000 {
+	animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+	animation-delay: 4s;
+}
+
+/* Enhanced Custom Scrollbar Styles */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-track {
+	background: rgba(15, 23, 42, 0.4);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(20, 184, 166, 0.1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	background: rgba(20, 184, 166, 0.3);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	box-shadow: 
+	  inset 0 0 20px rgba(14, 165, 233, 0.2),
+	  0 0 10px rgba(20, 184, 166, 0.2);
+	transition: all 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+	background: rgba(20, 184, 166, 0.5);
+	border: 1px solid rgba(14, 165, 233, 0.3);
+	box-shadow: 
+	  inset 0 0 30px rgba(14, 165, 233, 0.3),
+	  0 0 15px rgba(20, 184, 166, 0.3);
+  }
+  
+  /* When scrollbar is in active/clicked state */
+  ::-webkit-scrollbar-thumb:active {
+	background: rgba(20, 184, 166, 0.6);
+	border: 1px solid rgba(14, 165, 233, 0.4);
+	box-shadow: 
+	  inset 0 0 40px rgba(14, 165, 233, 0.4),
+	  0 0 20px rgba(20, 184, 166, 0.4);
+  }
+  
+  ::-webkit-scrollbar-corner {
+	background: transparent;
+  }
+
+  [data-aos] {
+	will-change: transform, opacity !important;
+  }
+
+
+
+ @keyframes shine {
+  from {
+	     left: -100%;
+  }
+	  to {
+	    left: 200%;
+	   }
+	 }
+	 .animate-shine {
+   animation: shine 1.5s ease-in-out infinite;
+ }
+
+/* Modern UI Utilities */
+@layer utilities {
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-accent-500 bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/20;
+  }
+  
+  .button-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-500/25;
+  }
+  
+  .button-secondary {
+    @apply border border-primary-500/50 text-primary-400 hover:bg-primary-500/10 hover:border-primary-400 font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105;
+  }
+  
+  .glow-effect {
+    @apply shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/40;
+  }
+  
+  /* Ensure content appears above background pattern */
+  .content-layer {
+    @apply relative z-10;
+  }
+}
+
+  
+/*   @media (prefers-color-scheme: dark) {
+	::-webkit-scrollbar-track {
+	  background: rgba(3, 0, 20, 0.6);
+	}
+  } */
+
+
+/* 
+  .container {
+	width: 100%;
+	height: 100%;
+  }
+  
+  .main > div {
+	position: absolute;
+	will-change: transform;
+	border-radius: 50%;
+	background: lightcoral;
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	opacity: 0.6;
+  }
+  
+  .main > div:nth-child(1) {
+	width: 60px;
+	height: 60px;
+  }
+  
+  .main > div:nth-child(2) {
+	width: 125px;
+	height: 125px;
+  }
+  
+  .main > div:nth-child(3) {
+	width: 75px;
+	height: 75px;
+  }
+  
+  .main > div::after {
+	content: '';
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: rgba(255, 0, 0, 0.8);
+  }
+  
+  .main > div:nth-child(2)::after {
+	top: 35px;
+	left: 35px;
+	width: 35px;
+	height: 35px;
+  }
+  
+  .main > div:nth-child(3)::after {
+	top: 25px;
+	left: 25px;
+	width: 25px;
+	height: 25px;
+  }
+  
+  .main {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	filter: url('#blob');
+	overflow: hidden;
+	background: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+  } */
